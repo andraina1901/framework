@@ -1,7 +1,12 @@
 package ETU1901.framework;
+
 public class Mapping {
     String className;
     String Method;
+    public Mapping(String className, String method) {
+        this.className = className;
+        Method = method;
+    }
     public String getClassName() {
         return className;
     }

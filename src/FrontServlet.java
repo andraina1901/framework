@@ -3,6 +3,15 @@ package ETU1901.framework.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.HashMap;
+import java.io.File;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Vector;
+import annotation.Model;
+import model.Emp;
+import xml.Config;
 
 import ETU1901.framework.Mapping;
 import jakarta.servlet.ServletException;
@@ -17,10 +26,47 @@ public class FrontServlet extends HttpServlet {
 
     public void ProcessRequest(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
         String url = req.getServletPath();
+        String r =Utilitaire.getParameter(url);
         PrintWriter out = resp.getWriter();
-        out.print(url);
+        for (String key : MappingUrls.keySet()) {
+            // out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n"); 
+            out.print(r);
+            if (key.equals(r)) {
+                out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n");
+            }
+        }
     }
 
+    public void init(){
+        String pckg = getInitParameter("path");
+        ArrayList<Class> allClass = new ArrayList<>();
+        File f = new File(pckg);
+        File[] lf = f.listFiles();
+        String[] nomFile = null;
+        try {
+            for (int i = 0; i < lf.length; i++) {
+                nomFile = lf[i].getName().split("\\.");
+                Class c = Class.forName("model"+"."+nomFile[0]);
+                allClass.add(c);
+            } 
+            Class annotMethod = Class.forName("annotation.Url");
+            MappingUrls = new HashMap<String,Mapping>();
+            for (int i = 0; i < allClass.size(); i++) {
+                Method[] m = allClass.get(i).getDeclaredMethods();
+                for (int j = 0; j < m.length; j++) {
+                    if (m[j].isAnnotationPresent(annotMethod)) {
+                        Method rep = m[j].getAnnotations()[0].annotationType().getDeclaredMethod("value",null);
+                        String key = rep.invoke(m[j].getAnnotations()[0]).toString();
+                        Mapping h = new Mapping(allClass.get(i).getSimpleName(),m[j].getName());
+                        MappingUrls.put(key,h);
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.ProcessRequest(req, resp);

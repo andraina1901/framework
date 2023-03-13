@@ -1,7 +1,11 @@
 <web-app>
     <servlet> 
         <servlet-name>front</servlet-name> 
-        <servlet-class>servlet.FrontServlet</servlet-class> 
+        <servlet-class>ETU1901.framework.servlet.FrontServlet</servlet-class> 
+        <init-param>
+            <param-name>path</param-name>
+            <param-value>C:\\apache-tomcat-10.0.22\\webapps\\framework\\WEB-INF\\classes\\model</param-value>
+        </init-param>
     </servlet>
     <servlet-mapping> 
         <servlet-name>front</servlet-name> 
