@@ -6,16 +6,21 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import ETU1901.framework.Mapping;
 // import annotation.Method;
 import annotation.Model;
 import model.Emp;
+import objet.Utilitaire;
 import xml.Config;
 
 public class Main {
     @SuppressWarnings("unchecked")
     public static void main(String[] args) throws Exception{
-        Main.getAnnotationName("model");
+        // Main.getAnnotationName("model");
         // Config.readXML("L:/ITU_L2/S4/Web Dynamique-Mr Naina/annotation/monFichier.xml","Jeremia");
+        Mapping m = new Mapping("model.Dept", "getName");
+        System.out.println(Utilitaire.apply(m));
+    
     }
 
     public static ArrayList<Class> getAllAnnotedClass(String pckg) throws Exception{

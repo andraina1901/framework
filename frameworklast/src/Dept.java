@@ -7,7 +7,7 @@ public class Dept {
     
     @Url("dept-getNom")
     public String getName() {
-        return name;
+        return "dept1";
     }
     public void setName(String name) {
         this.name = name;
