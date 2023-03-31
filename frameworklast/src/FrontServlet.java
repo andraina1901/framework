@@ -9,9 +9,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Vector;
-import annotation.Model;
-import model.Emp;
-import xml.Config;
 
 import ETU1901.framework.Mapping;
 import jakarta.servlet.ServletException;
@@ -29,8 +26,6 @@ public class FrontServlet extends HttpServlet {
         String r =Utilitaire.getParameter(url);
         PrintWriter out = resp.getWriter();
         for (String key : MappingUrls.keySet()) {
-            // out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n"); 
-            out.print(r);
             if (key.equals(r)) {
                 out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n");
             }
@@ -57,7 +52,7 @@ public class FrontServlet extends HttpServlet {
                     if (m[j].isAnnotationPresent(annotMethod)) {
                         Method rep = m[j].getAnnotations()[0].annotationType().getDeclaredMethod("value",null);
                         String key = rep.invoke(m[j].getAnnotations()[0]).toString();
-                        Mapping h = new Mapping(allClass.get(i).getSimpleName(),m[j].getName());
+                        Mapping h = new Mapping(allClass.get(i).getName(),m[j].getName());
                         MappingUrls.put(key,h);
                     }
                 }
