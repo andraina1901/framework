@@ -9,7 +9,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Vector;
-
 import ETU1901.framework.Mapping;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
@@ -21,14 +20,21 @@ public class FrontServlet extends HttpServlet {
 
     HashMap<String,Mapping> MappingUrls;
 
-    public void ProcessRequest(HttpServletRequest req, HttpServletResponse resp)throws ServletException, IOException {
-        String url = req.getServletPath();
-        String r =Utilitaire.getParameter(url);
-        PrintWriter out = resp.getWriter();
-        for (String key : MappingUrls.keySet()) {
-            if (key.equals(r)) {
-                out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n");
+    public void ProcessRequest(HttpServletRequest req, HttpServletResponse resp) {
+        try {
+            String url = req.getServletPath();
+            String r =Utilitaire.getParameter(url);
+            PrintWriter out = resp.getWriter();
+            for (String key : MappingUrls.keySet()) {
+                if (key.equals(r)) {
+                    out.print(MappingUrls.get(key).getMethod()+"  "+MappingUrls.get(key).getClassName()+"   "+key+"\n");
+                    Mapping m = new Mapping(MappingUrls.get(key).getClassName(), MappingUrls.get(key).getMethod());
+                    // out.print("checked");
+                    out.print(Utilitaire.apply(m));
+                }
             }
+        } catch (Exception e) {
+            //TODO: handle exception
         }
     }
 

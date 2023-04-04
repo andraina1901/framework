@@ -4,7 +4,7 @@
         <servlet-class>ETU1901.framework.servlet.FrontServlet</servlet-class> 
         <init-param>
             <param-name>path</param-name>
-            <param-value>C:\\apache-tomcat-10.0.22\\webapps\\framework\\WEB-INF\\classes\\model</param-value>
+            <param-value>C:\\apache-tomcat-10.0.22\\webapps\\frameworklast\\WEB-INF\\classes\\model</param-value>
         </init-param>
     </servlet>
     <servlet-mapping> 
