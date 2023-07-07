@@ -1,8 +1,12 @@
 package koursa;
 import annote.Url;
 import annote.Upload;
+import annote.RestAPI;
 import etu1901.FileUpload;
 import etu1901.ModelView;
+import java.util.HashMap;
+
+
 public class Course {
     String nom;
     String prenom;
@@ -27,13 +31,14 @@ public class Course {
 
     
     @Url("show")
-    public ModelView findById(){
+    @RestAPI("json")
+    public HashMap<String,Object> findById(){
         ModelView model = new ModelView("view.jsp");
         model.setJson(true);
         model.addItem("nom","Jeremia");
         model.addItem("numero",2);
         model.addItem("prenom","Jeremia");
-        return model;
+        return model.getData();
     } // return model;
 
     @Url("coucou")

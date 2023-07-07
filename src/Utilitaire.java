@@ -181,6 +181,9 @@ public class Utilitaire {
             return null;
         }
         Object o = method.invoke(objet, valeursDesParametres);
+        if (method.isAnnotationPresent(RestAPI.class)) {
+            return Utilitaire.toJson(o);
+        }
         return o;
     }
 
