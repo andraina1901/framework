@@ -36,5 +36,13 @@ public class ModelView {
         
         this.data.put(key, value);
     }
+
+    public boolean isJson() {
+        return isJson;
+    }
+
+    public void setJson(boolean isJson) {
+        this.isJson = isJson;
+    }
     
 }
