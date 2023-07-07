@@ -1,2 +1,2 @@
 # framework
-## 1- Framework 
+## 1- Pour l'upload: il aut configurer le chemin

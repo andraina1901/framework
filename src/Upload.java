@@ -5,5 +5,5 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Upload{
-    String value() default "jeremia"; 
+    String value(); 
 }
