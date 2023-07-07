@@ -5,5 +5,5 @@ import java.lang.annotation.*;
 @Inherited
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Url{
-    String value() ; 
+    String value() default "andraina"; 
 }
