@@ -25,15 +25,16 @@ public class Course {
         return toi+me;
     }
 
+    
     @Url("show")
-    public void findById(){
+    public ModelView findById(){
         ModelView model = new ModelView("view.jsp");
-        model.addItem("nom",5);
+        model.setJson(true);
+        model.addItem("nom","Jeremia");
+        model.addItem("numero",2);
         model.addItem("prenom","Jeremia");
-        model.addItem("filsAine","Mahenina");
-
-        // return model;
-    }
+        return model;
+    } // return model;
 
     @Url("coucou")
     public ModelView findAll(){

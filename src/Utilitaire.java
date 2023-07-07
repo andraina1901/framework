@@ -13,6 +13,8 @@ import java.nio.file.*;
 import etu1901.FileUpload;
 import etu1901.ModelView;
 import annote.*;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 public class Utilitaire {
     public static String[] getParameter(String hafa){
@@ -202,6 +204,12 @@ public class Utilitaire {
                 field[i].set(o,null);
             }
         }
+
+    }
+    public static String toJson(Object o){
+        Gson g = new GsonBuilder().create();
+        String j = g.toJson(o);
+        return j;
     }
 }
 

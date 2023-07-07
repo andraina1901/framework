@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html" pageEncoding="UTF-8" import="koursa.*"%>
 <%
-String nom = String.valueOf(request.getAttribute("nom"));
+String s = String.valueOf(request.getAttribute("json"));
 %>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,6 +11,6 @@ String nom = String.valueOf(request.getAttribute("nom"));
     <title>Document</title>
 </head>
 <body>
-    <h1>BONJOUR <%out.print(nom);%></h1>
+    <h1>BONJOUR <%out.print(s);%></h1>
 </body>
 </html>

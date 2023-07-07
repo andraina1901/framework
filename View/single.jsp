@@ -10,7 +10,6 @@
     <form action="/Framework/good" method="post" enctype="multipart/form-data" >
         <input type="text" name="nom" id="">
         <input type="number" name="numero" id="">
-        <input type="number" name="numero" id="">
         <input type="submit" value="valider">
     </form>
 </body>
